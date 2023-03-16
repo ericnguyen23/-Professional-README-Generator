@@ -27,6 +27,7 @@ inquirer
       choices: ["MIT", "BSD", "GPL"],
     },
     { name: "githubName", message: "Provide github username:" },
+    { name: "email", message: "Provide email:" },
   ])
   .then((data) => {
     let title = `${data.title}`;
@@ -43,6 +44,7 @@ inquirer
     let licenseContent;
     let licenseBadge;
     let username = `${data.githubName}`;
+    let email = `${data.email}`;
 
     // function to omit section heading if no text has been entered
     checkForContent = (promptData, sectionTitle) => {
@@ -52,10 +54,14 @@ inquirer
       } else if (promptData === username) {
         return promptData.length === 0
           ? ""
-          : `${sectionTitle}\n\n[Contact me for any questions](https://github.com/${username})`;
+          : `${sectionTitle}\n\n[Github Profile](https://github.com/${username})\nFor any additional questions, please email me at ${email}`;
       }
-      return promptData.length === 0 ? "" : `${sectionTitle}\n\n${promptData}`;
+      return promptData === "" || promptData === undefined
+        ? ""
+        : `${sectionTitle}\n\n${promptData}`;
     };
+
+    console.log(`"${licenseContent}"`);
 
     // check licenses
     switch (license) {

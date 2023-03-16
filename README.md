@@ -1,11 +1,24 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+# README Generator
+## Description
+
+This project offers users an easy way to generate a prefessional README file by utlizing NODE.js"
+
+## Installation
+
+You will need to run the following:
+### Installation Steps
 
 
+-  `npm init 
+- y`
+- npm install inquirer
+## Usage
 
+After installation is complete, run `node index.js` and follow the prompts
+## Credits
 
-
-
-
+Eric Nguyen
 
 ## License
 
@@ -34,5 +47,6 @@ SOFTWARE.
 
 ## Questions
 
-[Contact me for any questions](https://github.com/ericnguyen23)
+[Github Profile](https://github.com/ericnguyen23)
+For any additional questions, please email me at ericnguyen23@gmail.com
     
