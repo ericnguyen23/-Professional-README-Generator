@@ -54,7 +54,8 @@ inquirer
       } else if (promptData === username) {
         return promptData.length === 0
           ? ""
-          : `${sectionTitle}\n\n[Github Profile](https://github.com/${username})\nFor any additional questions, please email me at ${email}`;
+          : `${sectionTitle}\n\n[Github Profile](https://github.com/${username})
+For any additional questions, please email me at ${email}`;
       }
       return promptData === "" || promptData === undefined
         ? ""
@@ -81,6 +82,7 @@ inquirer
 
     // compiling all items
     const compiled = `${licenseBadge}
+#<a name="section-1"></a> Section 1
 ${checkForContent(title, `# ${title}`)}
 ${checkForContent(desc, "## Description")}
 ${checkForContent(tableContents, "## Table of Contents")}
@@ -91,6 +93,7 @@ ${checkForContent(credits, "## Credits")}
 ${checkForContent(tests, "## How To Test")}
 ${checkForContent(licenseContent, "## License")}
 ${checkForContent(username, "## Questions")}
+[Section 1](#section-1)
     `;
 
     fs.writeFile("README.md", compiled, (err) => {
