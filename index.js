@@ -11,12 +11,8 @@ inquirer
   .then((data) => {
     let title = `${data.title}`;
     let desc = `\n${data.desc}`;
-    let listOfItems = data.list.replace(/\-/g, "\n - ");
+    let listOfItems = `${data.list.replace(/\-/g, "\n- ")}\n`;
     let install = `\n${data.install}`;
-
-    // function formatList = (string) => {
-
-    // }
 
     // compiling all items
     let compiled = `# ${title} 
