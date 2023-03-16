@@ -32,23 +32,21 @@ inquirer
     let credits = `\n ${data.credits}\n`;
     let tests = `\n ${data.tests}\n`;
 
+    // function to include appropriate heading if text has been entered
+    addHeader = (promptData, sectionTitle) => {
+      return promptData === "" ? "Empty" : `${sectionTitle} \n ${promptData}`;
+    };
+
     // compiling all items
     let compiled = `# ${title} 
 ## Description \n
 ${desc}
-${tableContents === "" ? "" : `## Table Of contents \n \n ${tableContents}`}
-${install === "" ? "" : `## Installation \n ${install}`}
-${
-  installListOfItems === ""
-    ? ""
-    : `### Installation Steps \n ${installListOfItems}`
-}
-## Usage
-${usage}
-## Credits
-${credits}
-## How To Test
-${tests}
+${addHeader(tableContents, "## Table Of contents")}
+${addHeader(install, "## Installation")}
+${addHeader(installListOfItems, "### Installation Steps")}
+${addHeader(usage, "## Usage")}
+${addHeader(credits, "## Credits")}
+${addHeader(tests, "## How To Test")}
     `;
 
     fs.writeFile("README.md", compiled, (err) => {

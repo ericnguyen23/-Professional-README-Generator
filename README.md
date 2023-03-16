@@ -1,36 +1,34 @@
-# My Cool Project
+# My Project
  
 ## Description 
 
-fkdsjlfjkdsj kajdkjfsa
+jfkdsjfl kjsflkdj kkdlsfjd
 
 ## Table Of contents 
  
- 
-- fdskljfksd
-- sdfjkldjflksd
-- fjlkdsjfdlk
+- jflkdsjflkds
+- sdjkfjdslfj
+- jlkfsdjlfk
 
 ## Installation 
  
- Jkfljdslkj lkadjfkl dsjla;f
+ fkdsj lkdsjfdskl jfdksk
 
 ### Installation Steps 
  
-- fjlskjfldsj
-- sdjfkldsjf
-- sfdklj
+- fjkldsjflkdsj
+- jfskldjlkds
 
-## Usage
+## Usage 
+ 
+ jfklsdjfl ksdjkjfdksljldjs
 
- fkladjl kjdlsakjfkdaj
+## Credits 
+ 
+ ksdjflksdjflkdsj dsjlkjf
 
-## Credits
-
- jkfsldjlksdj
-
-## How To Test
-
- jfklsdkjdksfj
+## How To Test 
+ 
+ jsdklfj ksdjfkdjskl
 
     
