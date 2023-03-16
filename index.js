@@ -21,32 +21,34 @@ inquirer
     { name: "tests", message: "Provide test instructions:" },
   ])
   .then((data) => {
-    let title = `${data.title}\n`;
-    let desc = `${data.desc}\n`;
+    let title = `${data.title}`;
+    let desc = `${data.desc}`;
     // formatting the list of items appropriately
-    let tableContents = `${data.tableOfContents.replace(/\-/g, "\n- ")}\n`;
-    let install = `\n ${data.install}\n`;
+    let tableContents = `${data.tableOfContents.replace(/\-/g, "\n- ")}`;
+    let install = `${data.install}`;
     // formatting the list of items appropriately
-    let installListOfItems = `${data.installList.replace(/\-/g, "\n- ")}\n`;
-    let usage = `\n ${data.usage}\n`;
-    let credits = `\n ${data.credits}\n`;
-    let tests = `\n ${data.tests}\n`;
+    let installListOfItems = `${data.installList.replace(/\-/g, "\n- ")}`;
+    let usage = `${data.usage}`;
+    let credits = `${data.credits}`;
+    let tests = `${data.tests}`;
 
     // function to include appropriate heading if text has been entered
-    addHeader = (promptData, sectionTitle) => {
-      return promptData === "" ? "Empty" : `${sectionTitle} \n ${promptData}`;
+    checkForContent = (promptData, sectionTitle) => {
+      // console.log(`data="${promptData}"`);
+      return promptData.length === 0
+        ? ""
+        : `${sectionTitle} \n \n ${promptData}`;
     };
 
     // compiling all items
-    let compiled = `# ${title} 
-## Description \n
-${desc}
-${addHeader(tableContents, "## Table Of contents")}
-${addHeader(install, "## Installation")}
-${addHeader(installListOfItems, "### Installation Steps")}
-${addHeader(usage, "## Usage")}
-${addHeader(credits, "## Credits")}
-${addHeader(tests, "## How To Test")}
+    let compiled = `${checkForContent(title, `# ${title}`)}
+${checkForContent(desc, "# Description")}
+${checkForContent(tableContents, "## Table of Contents")}
+${checkForContent(install, "## Installation")}
+${checkForContent(installListOfItems, "### Installation Steps")}
+${checkForContent(usage, "## Usage")}
+${checkForContent(credits, "## Credits")}
+${checkForContent(tests, "## How To Test")}
     `;
 
     fs.writeFile("README.md", compiled, (err) => {
