@@ -10,9 +10,13 @@ inquirer
   ])
   .then((data) => {
     let title = `${data.title}`;
-    let desc = `\n${data.desc}\n`;
-    let listOfItems = data.list.replace(/\./gi, "\n");
+    let desc = `\n${data.desc}`;
+    let listOfItems = data.list.replace(/\-/g, "\n - ");
     let install = `\n${data.install}`;
+
+    // function formatList = (string) => {
+
+    // }
 
     // compiling all items
     let compiled = `# ${title} 
@@ -26,7 +30,4 @@ ${install}
     fs.writeFile("README.md", compiled, (err) => {
       err ? console.log(err) : console.log("Success!");
     });
-    // fs.appendFile("README.md", desc, (err) => {
-    //   err ? console.log(err) : console.log("Success!");
-    // });
   });
