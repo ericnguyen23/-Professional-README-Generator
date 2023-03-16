@@ -26,6 +26,7 @@ inquirer
       message: "Select license:",
       choices: ["MIT", "BSD", "GPL"],
     },
+    { name: "githubName", message: "Provide github username:" },
   ])
   .then((data) => {
     let title = `${data.title}`;
@@ -41,12 +42,17 @@ inquirer
     let license = `${data.license}`;
     let licenseContent;
     let licenseBadge;
+    let username = `${data.githubName}`;
 
     // function to omit section heading if no text has been entered
     checkForContent = (promptData, sectionTitle) => {
       // if it's the title, just display the title
       if (promptData === title) {
         return promptData.length === 0 ? "" : sectionTitle;
+      } else if (promptData === username) {
+        return promptData.length === 0
+          ? ""
+          : `${sectionTitle}\n\n[Contact me for any questions](https://github.com/${username})`;
       }
       return promptData.length === 0 ? "" : `${sectionTitle}\n\n${promptData}`;
     };
@@ -78,6 +84,7 @@ ${checkForContent(usage, "## Usage")}
 ${checkForContent(credits, "## Credits")}
 ${checkForContent(tests, "## How To Test")}
 ${checkForContent(licenseContent, "## License")}
+${checkForContent(username, "## Questions")}
     `;
 
     fs.writeFile("README.md", compiled, (err) => {
