@@ -39,7 +39,8 @@ inquirer
     let credits = `${data.credits}`;
     let tests = `${data.tests}`;
     let license = `${data.license}`;
-    let finalLicense;
+    let licenseContent;
+    let licenseBadge;
 
     // function to omit section heading if no text has been entered
     checkForContent = (promptData, sectionTitle) => {
@@ -53,18 +54,22 @@ inquirer
     // check licenses
     switch (license) {
       case "MIT":
-        finalLicense = lic.MIT;
+        licenseContent = lic.MIT.content;
+        licenseBadge = lic.MIT.badge;
         break;
       case "BSD":
-        finalLicense = lic.BSD;
+        licenseContent = lic.BSD.content;
+        licenseBadge = lic.BSD.badge;
         break;
       case "GPL":
-        finalLicense = lic.GPL;
+        licenseContent = lic.GPL.content;
+        licenseBadge = lic.GPL.badge;
         break;
     }
 
     // compiling all items
-    const compiled = `${checkForContent(title, `# ${title}`)}
+    const compiled = `${licenseBadge}
+${checkForContent(title, `# ${title}`)}
 ${checkForContent(desc, "## Description")}
 ${checkForContent(tableContents, "## Table of Contents")}
 ${checkForContent(install, "## Installation")}
@@ -72,7 +77,7 @@ ${checkForContent(installListOfItems, "### Installation Steps")}
 ${checkForContent(usage, "## Usage")}
 ${checkForContent(credits, "## Credits")}
 ${checkForContent(tests, "## How To Test")}
-${checkForContent(finalLicense, "## License")}
+${checkForContent(licenseContent, "## License")}
     `;
 
     fs.writeFile("README.md", compiled, (err) => {
