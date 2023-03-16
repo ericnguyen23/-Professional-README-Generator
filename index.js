@@ -1,3 +1,4 @@
+const lic = require("./licenses.js");
 const fs = require("fs");
 const inquirer = require("inquirer");
 
@@ -19,6 +20,12 @@ inquirer
     { name: "usage", message: "Provide usage details:" },
     { name: "credits", message: "Provide credit to collaborators:" },
     { name: "tests", message: "Provide test instructions:" },
+    {
+      type: "checkbox",
+      name: "license",
+      message: "Select license:",
+      choices: ["MIT", "BSD", "GPL"],
+    },
   ])
   .then((data) => {
     let title = `${data.title}`;
@@ -31,24 +38,41 @@ inquirer
     let usage = `${data.usage}`;
     let credits = `${data.credits}`;
     let tests = `${data.tests}`;
+    let license = `${data.license}`;
+    let finalLicense;
 
-    // function to include appropriate heading if text has been entered
+    // function to omit section heading if no text has been entered
     checkForContent = (promptData, sectionTitle) => {
-      // console.log(`data="${promptData}"`);
-      return promptData.length === 0
-        ? ""
-        : `${sectionTitle} \n \n ${promptData}`;
+      // if it's the title, just display the title
+      if (promptData === title) {
+        return promptData.length === 0 ? "" : sectionTitle;
+      }
+      return promptData.length === 0 ? "" : `${sectionTitle}\n\n${promptData}`;
     };
 
+    // check licenses
+    switch (license) {
+      case "MIT":
+        finalLicense = lic.MIT;
+        break;
+      case "BSD":
+        finalLicense = lic.BSD;
+        break;
+      case "GPL":
+        finalLicense = lic.GPL;
+        break;
+    }
+
     // compiling all items
-    let compiled = `${checkForContent(title, `# ${title}`)}
-${checkForContent(desc, "# Description")}
+    const compiled = `${checkForContent(title, `# ${title}`)}
+${checkForContent(desc, "## Description")}
 ${checkForContent(tableContents, "## Table of Contents")}
 ${checkForContent(install, "## Installation")}
 ${checkForContent(installListOfItems, "### Installation Steps")}
 ${checkForContent(usage, "## Usage")}
 ${checkForContent(credits, "## Credits")}
 ${checkForContent(tests, "## How To Test")}
+${checkForContent(finalLicense, "## License")}
     `;
 
     fs.writeFile("README.md", compiled, (err) => {
