@@ -82,7 +82,9 @@ For any additional questions, please email me at ${email}`;
 
     // compiling all items
     const compiled = `${licenseBadge}
-#<a name="section-1"></a> Section 1
+### Place 1
+
+Hello, this is some text to fill in this, [here](#place-2), is a link to the second place.
 ${checkForContent(title, `# ${title}`)}
 ${checkForContent(desc, "## Description")}
 ${checkForContent(tableContents, "## Table of Contents")}
@@ -93,7 +95,9 @@ ${checkForContent(credits, "## Credits")}
 ${checkForContent(tests, "## How To Test")}
 ${checkForContent(licenseContent, "## License")}
 ${checkForContent(username, "## Questions")}
-[Section 1](#section-1)
+### Place 2
+
+Place one has the fun times of linking here, but I can also link back [here](#place-1).
     `;
 
     fs.writeFile("README.md", compiled, (err) => {
