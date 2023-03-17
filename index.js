@@ -30,21 +30,21 @@ inquirer
     { name: "email", message: "Provide email:" },
   ])
   .then((data) => {
-    let title = `${data.title}`;
-    let desc = `${data.desc}`;
-    let tableContents = `${data.tableOfContents}`;
+    let title = data.title;
+    let desc = data.desc;
+    let tableContents = data.tableOfContents;
     let formattedToc = "";
-    let install = `${data.install}`;
-    let installListOfItems = `${data.installList}`;
+    let install = data.install;
+    let installListOfItems = data.installList;
     let formattedInstall = "";
-    let usage = `${data.usage}`;
-    let credits = `${data.credits}`;
-    let tests = `${data.tests}`;
-    let license = `${data.license}`;
+    let usage = data.usage;
+    let credits = data.credits;
+    let tests = data.tests;
+    let license = data.license;
     let licenseContent;
     let licenseBadge;
-    let username = `${data.githubName}`;
-    let email = `${data.email}`;
+    let username = data.githubName;
+    let email = data.email;
 
     // format table of contents
     formatToc = (string) => {
