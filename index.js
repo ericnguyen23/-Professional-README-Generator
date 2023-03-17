@@ -9,13 +9,13 @@ inquirer
     {
       name: "tableOfContents",
       message:
-        "Include a table of contents? Use - to separate items, do not include spaces.",
+        "Provide a table of contents. Separate each item with a comma with no spaces:",
     },
     { name: "install", message: "Provide installation details:" },
     {
       name: "installList",
       message:
-        "If you have list of installation items? Use - to separate items, do not include spaces.",
+        "Provide a list of installation items. Separate each item with a comma with no spaces:",
     },
     { name: "usage", message: "Provide usage details:" },
     { name: "credits", message: "Provide credit to collaborators:" },
@@ -35,7 +35,9 @@ inquirer
     let tableContents = `${data.tableOfContents}`;
     let formattedToc = "";
     let install = `${data.install}`;
-    let installListOfItems = `${data.installList.replace(/\-/g, "\n- ")}`;
+    // let installListOfItems = `${data.installList.replace(/\-/g, "\n- ")}`;
+    let installListOfItems = `${data.installList}`;
+    let formattedInstall = "";
     let usage = `${data.usage}`;
     let credits = `${data.credits}`;
     let tests = `${data.tests}`;
@@ -48,10 +50,22 @@ inquirer
     // format table of contents
     formatToc = (string) => {
       let itemsArr = string.split(",");
-      itemsArr.forEach((item) => (formattedToc += `- [${item}](#${item})\n`));
+      let noSpaces = string.replace(/\ /g, "-");
+      itemsArr.forEach(
+        (item) => (formattedToc += `- [${item}](#${noSpaces})\n`)
+      );
     };
 
     formatToc(tableContents);
+
+    // format instructions list
+    formatInstallList = (string) => {
+      let itemsArr = string.split(",");
+      itemsArr.forEach((item) => (formattedInstall += `- ${item}\n`));
+      console.log(formattedInstall);
+    };
+
+    formatInstallList(installListOfItems);
 
     // function to omit section heading if no text has been entered
     checkForContent = (promptData, sectionTitle) => {
@@ -85,16 +99,14 @@ For any additional questions, please email me at ${email}`;
         break;
     }
 
-    // ${checkForContent(tableContents, "## Table of Contents")}
-
-    // compiling all items
+    // compiling all items into one const
     const compiled = `${licenseBadge}
 [License](#License)
 ${checkForContent(title, `# ${title}`)}
 ${checkForContent(desc, "## Description")}
 ${checkForContent(formattedToc, "## Table Of Contents")}
 ${checkForContent(install, "## Installation")}
-${checkForContent(installListOfItems, "### Installation Steps")}
+${checkForContent(formattedInstall, "### Installation Steps")}
 ${checkForContent(usage, "## Usage")}
 ${checkForContent(credits, "## Credits")}
 ${checkForContent(tests, "## How To Test")}
