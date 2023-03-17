@@ -62,8 +62,6 @@ For any additional questions, please email me at ${email}`;
         : `${sectionTitle}\n\n${promptData}`;
     };
 
-    console.log(`"${licenseContent}"`);
-
     // check licenses
     switch (license) {
       case "MIT":
@@ -82,9 +80,7 @@ For any additional questions, please email me at ${email}`;
 
     // compiling all items
     const compiled = `${licenseBadge}
-### Place 1
-
-Hello, this is some text to fill in this, [here](#place-2), is a link to the second place.
+[License](#License)
 ${checkForContent(title, `# ${title}`)}
 ${checkForContent(desc, "## Description")}
 ${checkForContent(tableContents, "## Table of Contents")}
@@ -95,10 +91,7 @@ ${checkForContent(credits, "## Credits")}
 ${checkForContent(tests, "## How To Test")}
 ${checkForContent(licenseContent, "## License")}
 ${checkForContent(username, "## Questions")}
-### Place 2
-
-Place one has the fun times of linking here, but I can also link back [here](#place-1).
-    `;
+`;
 
     fs.writeFile("README.md", compiled, (err) => {
       err ? console.log(err) : console.log("Success!");
