@@ -35,7 +35,6 @@ inquirer
     let tableContents = `${data.tableOfContents}`;
     let formattedToc = "";
     let install = `${data.install}`;
-    // let installListOfItems = `${data.installList.replace(/\-/g, "\n- ")}`;
     let installListOfItems = `${data.installList}`;
     let formattedInstall = "";
     let usage = `${data.usage}`;
@@ -49,20 +48,27 @@ inquirer
 
     // format table of contents
     formatToc = (string) => {
-      let itemsArr = string.split(",");
-      let noSpaces = string.replace(/\ /g, "-");
-      itemsArr.forEach(
-        (item) => (formattedToc += `- [${item}](#${noSpaces})\n`)
-      );
+      if (string.length === 0) {
+        formattedToc = "";
+      } else {
+        let itemsArr = string.split(",");
+        let noSpaces = string.replace(/\ /g, "-");
+        itemsArr.forEach(
+          (item) => (formattedToc += `- [${item}](#${noSpaces})\n`)
+        );
+      }
     };
 
     formatToc(tableContents);
 
     // format instructions list
     formatInstallList = (string) => {
-      let itemsArr = string.split(",");
-      itemsArr.forEach((item) => (formattedInstall += `- ${item}\n`));
-      console.log(formattedInstall);
+      if (string.length === 0) {
+        formattedInstall = "";
+      } else {
+        let itemsArr = string.split(",");
+        itemsArr.forEach((item) => (formattedInstall += `- ${item}\n`));
+      }
     };
 
     formatInstallList(installListOfItems);
@@ -82,6 +88,8 @@ For any additional questions, please email me at ${email}`;
         ? ""
         : `${sectionTitle}\n\n${promptData}`;
     };
+
+    console.log(`"${formattedInstall}"`);
 
     // check licenses
     switch (license) {
