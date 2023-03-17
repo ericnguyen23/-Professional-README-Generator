@@ -21,7 +21,7 @@ inquirer
     { name: "credits", message: "Provide credit to collaborators:" },
     { name: "tests", message: "Provide test instructions:" },
     {
-      type: "checkbox",
+      type: "list",
       name: "license",
       message: "Select license:",
       choices: ["MIT", "BSD", "GPL"],
@@ -30,21 +30,24 @@ inquirer
     { name: "email", message: "Provide email:" },
   ])
   .then((data) => {
-    let title = data.title;
-    let desc = data.desc;
-    let tableContents = data.tableOfContents;
+    const {
+      title,
+      desc,
+      tableOfContents,
+      install,
+      installList,
+      usage,
+      credits,
+      tests,
+      license,
+      email,
+      githubName,
+    } = data;
+
     let formattedToc = "";
-    let install = data.install;
-    let installListOfItems = data.installList;
     let formattedInstall = "";
-    let usage = data.usage;
-    let credits = data.credits;
-    let tests = data.tests;
-    let license = data.license;
-    let licenseContent;
-    let licenseBadge;
-    let username = data.githubName;
-    let email = data.email;
+    let licenseContent = "";
+    let licenseBadge = "";
 
     // format table of contents
     formatToc = (string) => {
@@ -59,7 +62,7 @@ inquirer
       }
     };
 
-    formatToc(tableContents);
+    formatToc(tableOfContents);
 
     // format install list
     formatInstallList = (string) => {
@@ -71,17 +74,17 @@ inquirer
       }
     };
 
-    formatInstallList(installListOfItems);
+    formatInstallList(installList);
 
     // function to omit section heading if no text has been entered
     checkForContent = (promptData, sectionTitle) => {
       // if it's the title, just display the title
       if (promptData === title) {
         return promptData.length === 0 ? "" : sectionTitle;
-      } else if (promptData === username) {
+      } else if (promptData === githubName) {
         return promptData.length === 0
           ? ""
-          : `${sectionTitle}\n\n[Github Profile](https://github.com/${username})
+          : `${sectionTitle}\n\n[Github Profile](https://github.com/${githubName})
 For any additional questions, please email me at ${email}`;
       }
       return promptData === "" || promptData === undefined
@@ -89,6 +92,7 @@ For any additional questions, please email me at ${email}`;
         : `${sectionTitle}\n\n${promptData}`;
     };
 
+    console.log(license);
     // check licenses
     switch (license) {
       case "MIT":
@@ -116,7 +120,7 @@ ${checkForContent(usage, "## Usage")}
 ${checkForContent(credits, "## Credits")}
 ${checkForContent(tests, "## How To Test")}
 ${checkForContent(licenseContent, "## License")}
-${checkForContent(username, "## Questions")}
+${checkForContent(githubName, "## Questions")}
 `;
 
     fs.writeFile("README.md", compiled, (err) => {
