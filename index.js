@@ -52,16 +52,16 @@ inquirer
         formattedToc = "";
       } else {
         let itemsArr = string.split(",");
-        let noSpaces = string.replace(/\ /g, "-");
         itemsArr.forEach(
-          (item) => (formattedToc += `- [${item}](#${noSpaces})\n`)
+          (item) =>
+            (formattedToc += `- [${item}](#${item.replace(/\ /g, "-")})\n`)
         );
       }
     };
 
     formatToc(tableContents);
 
-    // format instructions list
+    // format install list
     formatInstallList = (string) => {
       if (string.length === 0) {
         formattedInstall = "";
@@ -89,8 +89,6 @@ For any additional questions, please email me at ${email}`;
         : `${sectionTitle}\n\n${promptData}`;
     };
 
-    console.log(`"${formattedInstall}"`);
-
     // check licenses
     switch (license) {
       case "MIT":
@@ -109,7 +107,6 @@ For any additional questions, please email me at ${email}`;
 
     // compiling all items into one const
     const compiled = `${licenseBadge}
-[License](#License)
 ${checkForContent(title, `# ${title}`)}
 ${checkForContent(desc, "## Description")}
 ${checkForContent(formattedToc, "## Table Of Contents")}

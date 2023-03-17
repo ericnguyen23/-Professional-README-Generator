@@ -1,37 +1,36 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[License](#License)
 # README Generator
 ## Description
 
-Project uses node to dynamically generate a quality README file using your terminal.
+Cool stuff
 ## Table Of Contents
 
-- [Installation](#Installation,Installation-Steps,Usage,Credits,How-To-Test,License,Questions)
-- [Installation Steps](#Installation,Installation-Steps,Usage,Credits,How-To-Test,License,Questions)
-- [Usage](#Installation,Installation-Steps,Usage,Credits,How-To-Test,License,Questions)
-- [Credits](#Installation,Installation-Steps,Usage,Credits,How-To-Test,License,Questions)
-- [How To Test](#Installation,Installation-Steps,Usage,Credits,How-To-Test,License,Questions)
-- [License](#Installation,Installation-Steps,Usage,Credits,How-To-Test,License,Questions)
-- [Questions](#Installation,Installation-Steps,Usage,Credits,How-To-Test,License,Questions)
+- [Installation](#Installation)
+- [Installation Steps](#Installation-Steps)
+- [Usage](#Usage)
+- [Credits](#Credits)
+- [How To Test](#How-To-Test)
+- [License](#License)
+- [Questions](#Questions)
 
 ## Installation
 
-Follow these steps to install:
+installation details goes here
 ### Installation Steps
 
-- run `npm init -y`
-- `npm install inquirer`
-- in your terminal run `node index.js`
+- step 1
+- step 2
+-  step3
 
 ## Usage
 
-Run `node index.js` and follow the prompts
+blah blah
 ## Credits
 
 Eric Nguyen
 ## How To Test
 
-No test at this time
+No testing at this time
 ## License
 
 
