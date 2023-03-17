@@ -32,10 +32,9 @@ inquirer
   .then((data) => {
     let title = `${data.title}`;
     let desc = `${data.desc}`;
-    // formatting the list of items appropriately
-    let tableContents = `${data.tableOfContents.replace(/\-/g, "\n- ")}`;
+    let tableContents = `${data.tableOfContents}`;
+    let formattedToc = "";
     let install = `${data.install}`;
-    // formatting the list of items appropriately
     let installListOfItems = `${data.installList.replace(/\-/g, "\n- ")}`;
     let usage = `${data.usage}`;
     let credits = `${data.credits}`;
@@ -45,6 +44,14 @@ inquirer
     let licenseBadge;
     let username = `${data.githubName}`;
     let email = `${data.email}`;
+
+    // format table of contents
+    formatToc = (string) => {
+      let itemsArr = string.split(",");
+      itemsArr.forEach((item) => (formattedToc += `- [${item}](#${item})\n`));
+    };
+
+    formatToc(tableContents);
 
     // function to omit section heading if no text has been entered
     checkForContent = (promptData, sectionTitle) => {
@@ -78,12 +85,14 @@ For any additional questions, please email me at ${email}`;
         break;
     }
 
+    // ${checkForContent(tableContents, "## Table of Contents")}
+
     // compiling all items
     const compiled = `${licenseBadge}
 [License](#License)
 ${checkForContent(title, `# ${title}`)}
 ${checkForContent(desc, "## Description")}
-${checkForContent(tableContents, "## Table of Contents")}
+${checkForContent(formattedToc, "## Table Of Contents")}
 ${checkForContent(install, "## Installation")}
 ${checkForContent(installListOfItems, "### Installation Steps")}
 ${checkForContent(usage, "## Usage")}
